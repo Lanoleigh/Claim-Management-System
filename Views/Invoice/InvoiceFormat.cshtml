@@ -1,0 +1,30 @@
+﻿@model Claim
+
+<html>
+
+    <head>
+        <style>
+        .invoice-header{
+            padding: 10px;
+            font-family:Bahnschrift,'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="invoice-header">
+            <h2>Varsity College Claim Management System</h2>
+        </div>
+        <div class="invoice-content">
+            <p>Claim ID: @Model.Claim_ID</p>
+            <p>Lecturer ID @Model.fk_lecturer_id</p>
+       <hr />
+            <p>Hours Worked: @Model.Hours_Worked</p>
+            <p>Description: @Model.Description</p>
+            <br />
+            <p>Date Of Claim: @Model.DateOfClaim</p>
+            <p>Claim Amount:R @Model.Claim_Amount </p>
+            <br>
+            <p>Claim Status: @Model.Status</p>
+        </div>
+    </body>
+</html>

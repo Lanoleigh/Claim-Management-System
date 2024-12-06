@@ -1,0 +1,119 @@
+﻿@* This page is for the lectures to enter new claims and track existing claims and view claim history *@
+@model CMCS_PROG_.Models.LecturerClaimViewModel
+
+<h1>Lecturer Portal</h1>
+<div class="lec-main-container">
+    <div class="lec-menu-container">
+        @* I need to change this to tab notation and not using the buttons *@
+        <ul class="menu-list">
+            <li class="menu-item">
+                <button id="newclm" onclick="openTab(event,'insert')" class="btns btn-inclm">Insert new claim</button>
+            </li>
+            <li class="menu-item">
+                <button onclick="openTab(event,'claim-his')" class="btns btn-clh">Claim history</button>
+            </li>
+            <li class="menu-item">
+                <button onclick="openTab(event,'track-claim')" class="btns btn-tkclm">Track Claim</button>
+            </li>
+            <li class="menu-item">
+                <button onclick="openTab(event,'Logout')" class="btns btn-logout">Logout</button>
+            </li>
+        </ul>
+    </div>
+    <div class="lec-details">
+        @* Lecturer details will be below *@
+        <label for="fname" class="lbls">First Name:</label>
+        <input readonly class="input-lec" type="text" id="fname" placeholder="@Html.DisplayFor(model => model.Lecturer.lecturer_name)" /><br />
+        <label for="surname" class="lbls">Surname:</label>
+        <input readonly class="input-lec" type="text" id="surname" placeholder="@Html.DisplayFor(model => model.Lecturer.lecturer_name)" /><br />
+        <label class="lbls" for="email">Email:</label>
+        <input readonly class="input-lec" type="email" id="email" placeholder="@Html.DisplayFor(model => model.Lecturer.Email)" /><br />
+        <label class="lbls" for="hr-rate">Hourly rate:</label>
+        <span  class="input-lec" id="he-rate">@Html.DisplayFor(model => model.Lecturer.Hourly_Rate)</span>
+    </div>
+    <hr class="underline"/>
+    @* content for the above tabs *@
+    <div id="insert" class="tabContent">
+        <h2 class="ic-heading">Insert new claim</h2>
+        <form asp-action="SubmitClaim" asp-controller="Lecturer" method="post" class="inset-claim-frm" enctype="multipart/form-data">
+            <label for="hrs-wrkd" class="lbls">Hours Worked</label>
+            <input class="inputs hrs-worked" id="hrs-worked" type="number" placeholder="20" min="1" onkeyup="CalculateClaimAmount()" name="Hours_Worked" max="160" /><br />
+            <label for="claim-amt" class="lbls">Claim Amount</label>
+            <input class="inputs input-clm" type="number" id="claim-amt" name="Claim_Amount" readonly /> <br />
+            <input class="btn-submit inputs" type="file" id="SupportingDocs" name="SupportingDocs" /> <br />
+            
+            <textarea class="txt-area" name="Description" maxlength="99"></textarea>
+            <hr class="underline" />
+            <button class="btn-submit" id="submit" type="submit">Submit Claim</button>
+        </form>
+        @if (TempData != null)
+        {
+            <script>
+                alert('@TempData["SuccessMessage"]');
+            </script>
+        }
+    </div>
+    @* claim history tab *@
+    <div id="claim-his" class="tabContent">
+        <h2 class="ic-heading">History of claim</h2>
+        <table class="table">
+            <tr class="row-head">
+                <th>Claim ID</th>
+                <th>Date of claim</th>
+                <th>Claim Amount</th>
+                <th>Claim Status</th>
+            </tr>
+        
+        @foreach(var item in Model.Claims)
+        {
+            <tr class="trigger-evt">
+                <td>@item.Claim_ID</td>
+                <td>@item.DateOfClaim.ToString("yyyy-MM-dd")</td>
+                <td>@item.Claim_Amount</td>
+                <td>@item.Status</td>
+            </tr>
+        }
+        </table>
+    </div>
+    @* track claim tab *@
+    <div id="track-claim" class="tabContent">
+        <h2 class="ic-heading">Track claim</h2>
+        @* this tab will extract data from the database *@
+        <div class="popup" onclick="myPopup()">
+            info
+            <span class="popuptext" id="myPopup">
+                Pending : Claim was just sent to Program Manager<hr />
+                Processing: Claim is at the Academic Manager.<hr />
+                Approved: Claim was approved and payment will be made soon.<hr />
+                Rejected: Claim was rejected.
+            </span>
+        </div>
+        <table class="table">
+            <tr class="row-head">
+                <th>Claim ID</th>
+                <th>Date of claim</th>
+                <th>Claim Amount</th>
+                <th>Claim Status</th>
+            </tr>
+            @foreach (var item in Model.Claims)
+            {
+                if( item.Status.Equals("Processing") || item.Status.Equals("Pending"))
+                {
+                    <tr class="trigger-evt">
+                        <td>@item.Claim_ID</td>
+                        <td>@item.DateOfClaim.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Claim_Amount</td>
+                        <td class="status-con">@item.Status</td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+    <div id="Logout" class="tabContent">
+        <h2 class="ic-heading">Logout</h2>
+        <h3>Are you sure you want to logout?</h3>
+        <button asp-area="" asp-action="Logout" asp-controller="Account" class="btn-confirm">Yes</button>
+        <button class="btn-confirm">No</button>
+    </div>
+</div>

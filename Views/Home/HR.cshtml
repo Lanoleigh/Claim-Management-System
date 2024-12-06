@@ -1,0 +1,131 @@
+﻿@* Here the HR personnel will be able to see all the claims, they will be seperated by their status. the 
+    HR personel can see all the details of the claim and press a button to generate an invoive claim for the 
+    selected invoice. *@
+    @model StaffClaimViewModel
+    <h2>Human Resources</h2>
+    <div class="lec-menu-container">
+        @* I need to change this to tab notation and not using the buttons *@
+        <ul class="menu-list">
+            <li class="menu-item">
+                <button id="newclm" onclick="openTab(event,'lecturers')" class="btns btn-inclm">Lecturers</button>
+            </li>
+            <li class="menu-item">
+                <button onclick="openTab(event,'claims')" class="btns btn-clh">Claims</button>
+            </li>
+            <li class="menu-item">
+                <button asp-area="" asp-action="Logout" asp-controller="Account" class="btns btn-tkclm">Logout</button>
+            </li>
+
+        </ul>
+    </div>
+
+<div class="tabContent" id="lecturers">
+    <div class="table-content">
+        <table id="hr-table" class="table">
+            <tr class="row-head">
+                <th>LecturerID</th>
+                <th>UserName</th>
+                <th>View</th>
+            </tr>
+            @foreach (var item in Model.lecturers)
+            {
+                    <tr>
+                        <td>@item.Lecturer_ID</td>
+                        <td>@item.UserName</td>
+                        <td>
+                            <button class="btn-view-hr"
+                                data-lec-id="@item.Lecturer_ID"
+                                data-lec-name="@item.lecturer_name"
+                                data-lec-surname="@item.lecturer_surname"
+                                data-lec-email="@item.Email"
+                                data-lec-phone="@item.phone_number_custom"
+                                data-lec-hourlyrate="@item.Hourly_Rate"
+                                data-lec-username="@item.UserName">
+                                View Lecturer
+                            </button>
+                        </td>
+                    </tr>
+            }
+        </table>
+
+        <div id="hrModal" class="modal">
+            <div class="modal-content">
+                <span class="hrClose">&times;</span>
+                <div class="mo-container">
+                    <form method="post" asp-action="UpdateLecDetails" asp-controller="Lecturer">
+                        <input name="Lecturer_ID" id="lec-id" class="lec-inputs" readonly />
+                        <input name="lecturer_name" id="lec-name" class="lec-inputs" readonly />
+                        <input name="lecturer_surname" id="lec-surname" class="lec-inputs" />
+                        <input name="Email" id="lec-email" class="lec-inputs" />
+                        <input name="phone_number_custom" id="lec-phone" class="lec-inputs" />
+                        <input name="Hourly_Rate" id="lec-hourly" class="lec-inputs" readonly />
+                        <input name="UserName" id="lec-username" class="lec-inputs" readonly />
+                        <button type="submit" class="btn-submit">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tabContent" id="claims">
+    <h2>Claims</h2>
+    <div class="claim-table">
+        <table id="hr-table" class="table">
+            <tr class="row-head">
+                <th>ClaimID</th>
+                <th>Lecturer ID</th>
+                <th>View Claims</th>
+            </tr>
+            @foreach (var item in Model.claims)
+            {
+                <tr>
+                    <td>@item.Claim_ID</td>
+                    <td>@item.fk_lecturer_id</td>
+                    <td>
+                        <button class="btn-view-c"
+                                data-claimID="@item.Claim_ID"
+                                data-lecID="@item.fk_lecturer_id"
+                                data-claimAmount="@item.Claim_Amount"
+                                data-hoursWorked="@item.Hours_Worked"
+                                data-description="@item.Description"
+                                data-status="@item.Status"
+                                data-dateofclaim="@item.DateOfClaim">
+                            View Claim
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="modal" id="clModal">
+        
+        <div class="modal-content">
+            <span class="claim2Close">&times;</span>
+            <form method="get" asp-action="GenerateInvoice" asp-controller="Invoice" target="_blank">
+                <lable for="Claim_ID"></lable>
+                <input readonly id="ClaimID" name="Claim_ID" />
+                <lable for="fk_lecturer_id"></lable>
+                <input readonly id="FkLecID" name="fk_lecturer_id" />
+                <lable for="Hours_Worked"></lable>
+                <input readonly id="HoursWorked" name="Hours_Worked" />
+                <lable for="Description"></lable>
+                <input readonly id="Description" name="Description" />
+                <br />
+                <lable for="DateOfClaim"></lable>
+                <input readonly id="DateofClm" name="DateOfClaim" />
+                <lable for="Claim_Amount"></lable>
+                <input readonly id="ClmAmt" name="Claim_Amount" />
+                <lable for="Status"></lable>
+                <input readonly id="Status" name="Status" />
+            
+                <input hidden name="Claim_ID" id="ClaimID2" />
+                <button class="btn-submit" type="submit">Generate Invoice</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    
+
+      

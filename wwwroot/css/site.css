@@ -1,0 +1,538 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+/*custom styling*/
+/*layout.cshtml*/
+.nav-item{
+    float:right !important;
+    padding: 9px;
+    width: 80px;
+    border-radius: 30px;
+    text-align: center;
+    height: 65px;
+    background-color:unset;
+}
+
+h1{
+    width:fit-content;
+}
+.nav-link:hover{
+   background-color:#258cfb !important;
+   text-decoration: underline 1px from-font;
+   transition:ease-in-out .5s;
+   border-radius: 30px;
+}
+.n{
+    float: right!important;
+}
+.navbar-nav{
+    float: right !important;
+    display: inline-block;
+}
+/*index styling */
+.img-index{
+    width: 990px;
+    opacity: .7;
+    border-radius:20px;
+}
+.img-container{
+    width:100%;
+    height:600px;
+    position: relative;
+    text-align: center;
+}
+.navs-item{
+    padding: 8px;
+    text-decoration: none;
+    background-color:#81ee3f;
+    border-radius: 30px;
+    color:black;
+}
+.nav-item:hover {
+    background-color: #258cfb;
+    cursor: pointer;
+    color:#81ee3f;
+}
+.navs {
+    text-decoration: none;
+    font-family: Play,'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    position: absolute;
+    width: 400px;
+    height: fit-content;
+  
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 1;
+}
+
+/*IC.cshtml*/
+.lec-main-container{
+    display:inline-block;
+    position: relative;
+    width: 100%!important;
+    height: 100%;
+    
+}
+.menu-list{
+    position:sticky;
+    overflow-y: hidden;
+    display: inline-flex;
+    width:fit-content;
+    margin:0;
+    border-radius:80px;
+   
+}
+#newclm{
+    border-radius: 80px 0px 0px 80px;
+}
+.menu-item {
+    text-decoration: none;
+    list-style: none;
+    float: right !important;
+}
+.lec-menu-container{
+    height: fit-content;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    border-radius: 80px;
+}
+.lec-head {
+    background-color: #258cfb;
+    color: black;
+    width:100%;
+    height: 100%;
+    padding:10px;
+    border-radius: 10px 10px 0px 0px;
+
+}
+.lec-details{
+    border:1px solid;
+    width: fit-content;
+    border-radius:10px;
+   
+}
+.input-lec{
+    border:none;
+    padding:5px;
+    width:fit-content;
+}
+.btns{
+    padding: 10px;
+    border:none;
+    width: 100px;
+    height:80px;
+    text-align: center;
+}
+.btns:hover{
+    background-color:#81ee3f;
+    transition: ease-in-out .3s;
+}
+.btns button.active{
+    background-color: #81ee3f;
+}
+
+.tabContent{
+    display: none;
+    width: 100%;
+    height: fit-content;
+    padding:20px;
+    border: 1px solid;
+    background-color: #efefef;
+    border-radius: 10px;
+}
+.ic-heading{
+    font-family:Anton,'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.popuptext{
+    visibility:hidden;
+}
+
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+/*insert claim form IC.cshtml*/
+.inset-claim-frm{
+    padding: 10px;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: block;
+    position: relative;
+    justify-content:center;
+}
+.inputs{
+    border: none;
+    padding:8px;
+    border-radius: 9px;
+    margin-bottom: 7px;
+}
+#he-rate{
+    color: #258cfb;
+}
+.txt-area {
+    min-width: 200px;
+    max-width: 210px;
+    min-height: 100px;
+    max-height: 110px;
+    margin: auto;
+}
+.btn-submit {
+    border: none;
+    padding: 7px;
+    border-radius: 9px;
+}
+.btn-submit:hover{
+    background-color:#81ee3f;
+    transition:ease-in-out .5s;
+}
+
+/*logout IC.cshtml*/
+#Logout{
+    text-align: center;
+    margin: auto;
+}
+.btn-confirm{
+    border:none;
+    
+    border-radius:20px;
+}
+.btn-confirm:hover{ 
+    border: 1px #81ee3f solid;
+    transition: ease-in-out .3s;
+}
+/*track claim IC.cshtml*/
+.table{
+    padding:10px;
+    border: 1px solid;
+    border-radius: 10px 10px 0px 0px;
+}
+.row-head {
+    background-color: #81ee3f;
+    margin: 0;
+    border-radius: 10px 10px 0px 0px;
+}
+.status-con {
+    padding: 5px;
+    font-weight: bold;
+}
+#myModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#hrModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    border-radius: 25px;
+  
+}
+.head{
+    background-color:#81ee3f;
+    margin:0;
+    padding:unset;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+}
+.mo-container{
+    display:flex;
+}
+.lec-bar {
+    width: 40%;
+    background-color: #f3f3f3;
+    text-align: center;
+    border-radius: 10px;
+    height: fit-content;
+}
+.
+/* The Close Button */
+.claimClose {
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    width: fit-content;
+    font-weight: bold;
+    background-color: red;
+}
+
+.claimClose:hover,
+.claimClose:focus {
+    color: #81ee3f;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*modal content styling*/
+.clm-dets{
+    text-align: center;
+    width:50%;
+    margin-left:30px;
+    background-color:#f3f3f3;
+}
+.hs{
+    font-family: Play,'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.btn-approve{
+    padding:10px;
+    border:groove solid 1px;
+    border-color:#258cfb;
+    border-radius: 10px;
+}
+.btn-approve:hover{
+    background-color:#81ee3f;
+    transition: ease-in-out .2s;
+}
+.btn-view{
+    border: 1px solid;
+    padding:5px;
+    border-radius:10px
+}
+.btn-view:hover{
+    background-color:#258cfb;
+    transition: ease-in-out .2s;
+}
+.login-form{
+    padding:10px;
+    margin:auto;
+    width: 650px;
+    text-align:center;
+}
+.login-input{
+    padding:10px;
+    border:none;
+    width: 200px;
+    justify-content: center;
+    online:none;
+    transition: border-color .3s ease;
+}
+.login:focus{
+    border-bottom:2px #81ee3f solid;
+}
+
+.input-lec{
+    color: red;
+}
+/*Admin page*/
+.no-record-div{
+    width:fit-content;
+    margin:auto;
+    text-align:center;
+    color:#258cfb;
+    opacity: .8;
+}
+
+/*hr page styling*/
+#hrModal {
+    display: none;
+}
+#hr-table{
+    width:500px;
+    margin:auto;
+    overflow-inline:scroll;
+    
+}
+.btn-view-hr {
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 10px
+}
+
+    .btn-view-hr:hover {
+        background-color: #258cfb;
+        transition: ease-in-out .2s;
+    }
+.claim-table{
+    max-height:400px;
+    min-height:400px;
+    overflow:scroll;
+}
+/* The Close Button */
+.hrClose {
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    width: fit-content;
+    font-weight: bold;
+    background-color: red;
+}
+
+    .hrClose:hover,
+    .hrClose:focus {
+        color: #81ee3f;
+        text-decoration: none;
+        cursor: pointer;
+    }
+/*another close button*/
+.claim2Close {
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    width: fit-content;
+    font-weight: bold;
+    background-color: red;
+}
+
+    .claim2Close:hover,
+    .claim2Close:focus {
+        color: #81ee3f;
+        text-decoration: none;
+        cursor: pointer;
+    }
+/* Modal styling */
+#clModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    margin:auto;
+    justify-content:center;
+    justify-self:center;
+    text-align:center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    .modal-content input {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+.hrClose {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .hrClose:hover,
+    .hrClose:focus {
+        color: #000;
+        text-decoration: none;
+    }
+
+.btn-view-hr {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .btn-view-hr:hover {
+        background-color: #0056b3;
+    }
+
+/*another view button*/
+.btn-view-c {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .btn-view-c:hover {
+        background-color: #0056b3;
+    }
+
+.claim-modal-container{
+    width:60%;
+    background-color:white;
+    border-radius:10px;
+
+}

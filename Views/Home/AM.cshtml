@@ -1,0 +1,89 @@
+﻿@model CMCS_PROG_.Models.StaffClaimViewModel
+<h1>Hi,@Model.Staff.Name </h1>
+<p>@Model.Staff.title</p>
+<div class="admin-container">
+
+    <table class="table">
+        <tr class="row-head">
+            <th>ClaimID</th>
+            <th>LecturerID</th>
+            <th>Claim Amount</th>
+            <th>Date of Claim</th>
+            <th>Supporting Document</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            @foreach (var item in Model.claims)
+            {
+            <tr>
+                    @if (item.Status.Equals("Processing") && item.fk_staff_id.Equals(Model.Staff.Id))
+                    {
+                   
+                    <td>@item.Claim_ID</td>
+                    <td>@item.fk_lecturer_id</td>
+                    <td>R @item.Claim_Amount</td>
+                    <td>@item.DateOfClaim.ToString("yyyy-MM-dd")</td>
+                        @if (item.FilePath != null)
+                        {
+                        <td>Yes</td>
+                        }
+                        else
+                        {
+                        <td>N/A</td>
+                        }
+                    <td hidden>@item.fk_staff_id</td>
+                    <td>
+                        <button class="btn-view"
+                                data-claim-id="@item.Claim_ID"
+                                data-lecturer-id="@item.fk_lecturer_id"
+                                data-claim-amt="@item.Claim_Amount"
+                                data-dateofClaim="@item.DateOfClaim.ToString("yyyy-MM-dd")"
+                                data-suppDocs="@(item.FilePath != null ? "Yes" : "N/A")"
+                                data-status="@item.Status"
+                                data-staff-id="@item.fk_staff_id">
+                                @item.Status
+                        </button>
+                    </td>
+                    
+                    }
+
+            </tr>
+            }
+    </table>
+    <div id="myModal" class="modal">
+
+
+        <div class="modal-content">
+            <span class="close">&times</span>
+            <div class="mo-container">
+                <div class="lec-bar">
+                    <div class="head"><h3 class="hs">Lecturer ID:<span id="lecturerID"></span> </h3></div>
+                    <p>Independent Contractor</p>
+                </div>
+                <div class="clm-dets">
+                    <div class="head"><h3 class="hs">Claim Details</h3></div>
+                    <p>Claim ID: <span id="claimid"></span> </p>
+                    <p>Claim Amount: R <span id="claimAmt"></span></p>
+                    <p>Date of Claim: <span id="dateofclaim"></span></p>
+                    <p>Supporting Document: <span id="suppDocs"></span></p>
+                    <p>Claim Status: <span id="status"></span></p>
+                    <form asp-controller="Claim" asp-action="ApproveClaim">
+                        <input type="text" name="Claim_ID" hidden id="approve_claim_id" />
+                        <input type="text" name="Status" id="cl_status" hidden />
+                        <input type="text" name="fk_staff_id" hidden id="app_s_id" />
+                        <button class="btn-approve"> Final Approve Claim</button>
+                    </form>
+                    <form asp-controller="Claim" asp-action="RejectClaim">
+                        <input type="text" name="Claim_ID" hidden id="reject_claim_id" />
+                        <input type="text" name="fk_staff_id" hidden id="reject_s_id" />
+                        <button class="btn-approve">Reject Claim</button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
